@@ -1,0 +1,240 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>SimNews - The Ohio State National Security Simulation</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../stylesheets/style.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="container sticky-top bg-white">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-2 pt-1">
+        <img class="blocko-logo" src="images/blocko.png"/>
+      </div>
+      <div class="col-6 text-center">
+        <a class="blog-header-logo text-black" href="/">SimNews</a>
+        <h6 class="text-black">The Ohio State National Security Simulation</h6>
+      </div>
+      <div class="col-2 d-flex justify-content-end align-items-center">
+        <!-- <a class="link-secondary" href="#" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+        </a> -->
+        <a class="p-2 link-dark ex-link" href="https://u.osu.edu/nationalsecuritysim/" target="_blank">SimCentral</a>
+        <a class="p-2 link-dark ex-link" href="https://u.osu.edu/simoffices/" target="_blank">SimOffices</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <a id="all" class="p-2 link-dark active-link">All Posts</a>
+      <a id="international" class="p-2 link-dark">International</a>
+      <a id="national" class="p-2 link-dark">National</a>
+      <a id="cyber" class="p-2 link-dark">Cyber</a>
+      <a id="ohio" class="p-2 link-dark">Ohio</a>
+      <a id="space" class="p-2 link-dark">Space</a>
+      <a id="terrorism" class="p-2 link-dark">Terrorism</a>
+      <a id="whitehouse" class="p-2 link-dark">White House</a>
+      <a id="pentagon" class="p-2 link-dark">Pentagon</a>
+      <a id="military" class="p-2 link-dark">Military</a>
+      <a id="intelligence" class="p-2 link-dark">Intelligence</a>
+      <a id="congress" class="p-2 link-dark">Congress</a>
+      <a id="courts" class="p-2 link-dark">Courts</a>
+      <a id="civilunrest" class="p-2 link-dark">Civil Unrest</a>
+      <a id="politics" class="p-2 link-dark">Politics</a>
+    </nav>
+  </div>
+</div>
+
+<main class="article-container container">
+
+  <div class="row g-5 mt-2">
+    <div class="wire col-md-6">
+
+      <div class="border-bottom mb-4">
+        <img class="pt-2 pe-2 wire-logo float-start" src="images/the-wire-logo.png"/>
+        <h1 class="fst-italic">The Wire</h1>
+        <p class="blog-post-meta">[Control-written content]</p>
+      </div>
+    </div>
+
+
+    <div class="torch col-md-6">
+      <div class="border-bottom mb-4">
+        <img class="pe-2 torch-logo float-start" src="images/the-torch-logo.png"/>
+        <h1 class="fst-italic">The Torch</h1>
+        <p class="blog-post-meta">[Player-written content]</p>
+      </div>
+    </div>
+  </div>
+  
+</main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6CJ5JT88CF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6CJ5JT88CF');
+    </script>
+
+    <script>
+      let currentPosts = [];
+
+      $(document).ready(function() {
+          getPosts();
+      });
+
+      $.ajaxSetup({cache: false});
+
+      function getPosts() {
+          let uri = window.location.origin + '/getPosts';
+
+          $.get(uri, function(data) {
+
+              for(let i=0; i < data.length; i++) {
+                let post = data[i]
+                post['postAdditionalTagsArr'] = post.postAdditionalTags.split(',');
+              }
+
+              currentPosts = data;
+
+              displayPosts(data);
+          });
+      }
+
+      function displayPosts(data) {
+
+          data.sort((a, b) => b.postDate.localeCompare(a.postDate));
+
+          for(let i = 0; i < data.length; i++) {
+              let post = data[i];
+
+              let postTime = moment.utc(post.postDate).local().format('LLL');
+              let postText = post.postText;
+              let postTextTruncate = postText.substr(0, 250) + " ...";
+              let postContent = post.postContent;
+
+              let postMarkup = '<a style="text-decoration: none; color: black" href="/article?id=' + post.postID + '" target="_blank"><article id="' + post.postID + '" style="cursor: pointer" class="blog-post"><div class="row g-0"><div class="blog-text col-8 pe-2"><h2 class="blog-post-title">'
+                                  + post.postTitle + '</h2><p class="blog-post-meta">' + postTime + ' by ' + post.postAuthor + '</p>'
+                                  + '<p>' + postTextTruncate + '</p></div></article></a>';
+
+
+              if(post.postTag == 'thewire') {
+                  $('.wire').append(postMarkup);
+              } 
+              else {
+                  $('.torch').append(postMarkup);
+              }
+
+              let re = /src="(data:image\/[^;]+;base64[^"]+)"/i
+              let imgResults = re.exec(postContent);
+              
+              if(imgResults) {
+                let dataSrc = imgResults[1];
+
+                let postSelector = "#" + post.postID + " .row"
+
+                $(postSelector).append('<div class="col-4 mb-4 img-123"><img src="' + dataSrc + '"/></div>');
+              } 
+              else {
+                let postSelectorCol = '#' + post.postID + ' .row .blog-text'
+                $(postSelectorCol).removeClass('col-8')
+              }
+
+          }
+      }
+
+$(document).on('click', '.link-dark', function(event) {
+  let id = $(this).attr('id');
+  let tagText = $(this).text();
+
+  $('.nav-scroller .link-dark').removeClass('active-link');
+  $(this).addClass('active-link')
+
+  $('.wire a').remove();
+  $('.torch a').remove();
+  $('.wire .no-tag').remove();
+  $('.torch .no-tag').remove();
+
+  let wireNum = 0;
+  let torchNum = 0;
+
+  if(id != "all") {
+    let taggedPosts = [];
+
+    for(let i=0; i < currentPosts.length; i++) {
+      let post = currentPosts[i];
+      let postTag = post.postTag
+      let postAdditionalTagsArr = post.postAdditionalTagsArr;
+
+      for(let j=0; j < postAdditionalTagsArr.length; j++){
+        let tag = postAdditionalTagsArr[j];
+
+        if(tag == id) {
+          taggedPosts.push(post);
+
+          if(postTag == "thewire") {
+            wireNum++;
+          } else if(postTag == "thetorch") {
+            torchNum++;
+          }
+        }
+      }
+    }
+
+    if(taggedPosts.length) {
+      displayPosts(taggedPosts);
+
+      if(wireNum == 0) {
+        $('.wire').append('<p class="no-tag">No posts with tag "' + tagText + '"</p>')
+      } else if(torchNum == 0) {
+        $('.torch').append('<p class="no-tag">No posts with tag "' + tagText + '"</p>')
+      }
+    } else {
+      $('.wire').append('<p class="no-tag">No posts with tag "' + tagText + '"</p>')
+      $('.torch').append('<p class="no-tag">No posts with tag "' + tagText + '"</p>')
+    }
+  } 
+  else {
+    displayPosts(currentPosts);
+  }
+
+})
+    </script>
+  </body>
+</html>
