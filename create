@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>SimNews - The Ohio State National Security Simulation</title>
+
+    <link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <link href="../stylesheets/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
+  </head>
+  <body>
+    
+<div class="container sticky-top bg-white">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-2 pt-1">
+        <img class="blocko-logo" src="images/blocko.png"/>
+      </div>
+      <div class="col-6 text-center">
+        <a class="blog-header-logo text-black" href="/">SimNews</a>
+        <h6 class="text-black">The Ohio State National Security Simulation</h6>
+      </div>
+      <div class="col-2 d-flex justify-content-end align-items-center">
+        <a class="p-2 link-dark" href="https://u.osu.edu/nationalsecuritysim/" target="_blank">SimCentral</a>
+        <a class="p-2 link-dark"href="https://u.osu.edu/simoffices/" target="_blank">SimOffices</a>
+      </div>
+    </div>
+  </header>
+</div>
+
+
+<div class="container">
+  <h2>Posts</h2>
+
+  <a id="add-post" class="btn btn-black btn-outline-secondary" href="#">Create Post</a>
+</div>
+
+<main id="post-container" class="container">
+
+  <!-- <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          New Article
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          <div class="row mb-3">
+            <div class="col-6">
+
+              <div class="mb-3">
+                <label for="formPostTitle" class="form-label">Post Title</label>
+                <input type="text" class="form-control" id="formPostTitle" placeholder="Post Title">
+              </div>
+
+              <div class="mb-3">
+                <label for="formPostDescription" class="form-label">Post Description</label>
+                <input type="text" class="form-control" id="formPostDescription" placeholder="Post Description">
+              </div>
+
+            </div>
+
+            <div class="col-6">
+
+              <div class="mb-3">
+                <label for="formPostAuthor" class="form-label">Post Author</label>
+                <input type="text" class="form-control" id="formPostAuthor" placeholder="Post Author">
+              </div>
+
+              <div class="mb-3">
+                <label for="formPostTag" class="form-label">Post Tag</label>
+                <select class="form-select" id="formPostTag">
+                  <option value="thewire" selected>The Wire</option>
+                  <option value="thetorch">The Torch</option>
+                </select>
+              </div>
+
+              <label class="form-label">Additional Tags</label>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="breakingnews" id="breakingnewstag" checked="">
+                <label class="form-check-label" for="breakingnewstag">Breaking News</label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="international" id="internationaltag" checked="">
+                <label class="form-check-label" for="internationaltag">International</label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="national" id="nationaltag" checked="false">
+                <label class="form-check-label" for="nationaltag">National</label>
+              </div>
+
+            </div>
+          </div>
+
+
+          
+              <div class="mb-3" id="editor">
+                <p>Hello World!</p>
+                <p>Some initial <strong>bold</strong> text</p>
+                <p><br></p>
+              </div>
+
+          <a id="save-post" class="btn btn-black btn-outline-secondary" href="#">Save Post</a>
+          <a id="delete-post" class="btn btn-black btn-outline-secondary" href="#">Delete Post</a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kensnyder/quill-image-resize-module@3411c9a7/image-resize.min.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CJ5JT88CF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CJ5JT88CF');
+</script>
+
+
+<script>
+  $.ajaxSetup({ cache: false });
+
+  $(document).ready(function() {
+    let uri = window.location.origin + '/getPosts';
+
+    $.get(uri, function(data) {
+          displayPosts(data);
+      });
+  });
+  
+  function displayPosts(data) {
+    data.sort((a, b) => b.postDate.localeCompare(a.postDate));
+    
+
+      for(let i = 0; i < data.length; i++) {
+          let post = data[i];
+
+          let GUID = post.postID;
+
+          let html = '<div class="accordion accordion-flush mb-2 mt-2" id="accordion-' + GUID + '">'
+          + '<div class="accordion-item">'
+          + '<h2 class="accordion-header" id="heading-' + GUID + '">'
+          + '<button class="accordion-button" id="accordion-button-' + GUID + '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-' + GUID + '" aria-expanded="true" aria-controls="collapse-' + GUID + '">'
+          + post.postTitle
+          + '</button>'
+          + '</h2>'
+          + '<div id="collapse-' + GUID + '" class="accordion-collapse collapse" aria-labelledby="heading-' + GUID + '" data-bs-parent="#accordion-' + GUID + '">'
+          + '<div class="accordion-body">'
+          + '<div class="row">'
+          + '<div class="col-6">' 
+
+          + '<div class="mb-3">'
+          + '<label for="formPostTitle" class="form-label">Post Title</label>'
+          + '<input type="text" class="form-control post-title" id="formPostTitle-' + GUID + '" placeholder="Post Title" value="' + post.postTitle + '">'
+          + '</div>'
+
+          + '<div class="mb-3">'
+          + '<label for="formPostDescription" class="form-label">Post Description</label>'
+          + '<input type="text" class="form-control" id="formPostDescription-' + GUID + '" placeholder="Post Description" value="' + post.postDescription + '">'
+          + '</div>'
+          + '</div>'
+
+          + '<div class="col-6">'
+          + '<div class="mb-3">'
+          + '<label for="formPostAuthor" class="form-label">Post Author (First Last)</label>'
+          + '<input type="text" class="form-control" id="formPostAuthor-' + GUID + '" placeholder="Post Author" value="' + post.postAuthor + '">'
+          + '</div>'
+
+          + '<div class="mb-3">'
+          + '<label for="formPostTag" class="form-label">Post Tag</label>'
+          + '<select class="form-select" id="formPostTag-' + GUID + '">'
+          + '<option value="thewire">The Wire</option>'
+          + '<option value="thetorch">The Torch</option>'
+          + '</select>'
+          + '</div>'
+
+          + '</div>'
+          + '</div>'
+
+
+          + '<div class="row mb-3">'
+          + '<div class="col">'
+          + '<label class="form-label">Additional Tags</label>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="international" id="internationaltag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="internationaltag">International</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="national" id="nationaltag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="nationaltag">National</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="cyber" id="cybertag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="cybertag">Cyber</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="ohio" id="ohiotag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="ohiotag">Ohio</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="space" id="spacetag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="spacetag">Space</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="terrorism" id="terrorismtag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="terrorismtag">Terrorism</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="whitehouse" id="whitehousetag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="whitehousetag">White House</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="pentagon" id="pentagontag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="pentagontag">Pentagon</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="military" id="militarytag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="militarytag">Military</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="intelligence" id="intelligencetag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="intelligencetag">Intelligence</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="congress" id="congresstag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="congresstag">Congress</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="courts" id="courtstag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="courtstag">Courts</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="civilunrest" id="civilunresttag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="civilunrest">Civil Unrest</label>'
+          + '</div>'
+
+          + '<div class="form-check">'
+          + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="politics" id="politicstag-' + GUID + '" unchecked/>'
+          + '<label class="form-check-label" for="politicstag">Politics</label>'
+          + '</div>'
+
+
+          + '</div>'
+          + '</div>'
+
+
+          + '<label class="form-label">Post Content</label>'
+          + '<div class="mb-3" id="editor-' + GUID + '">'
+          + post.postContent
+          + '</div>'
+
+          + '<a id="save-' + GUID + '" class="save-post btn btn-black btn-outline-secondary me-2" href="#">Save Post</a>'
+          + '<a id="delete-' + GUID + '" class="delete-post btn btn-black btn-outline-secondary me-2" href="#">Delete Post</a>'
+          
+          + '</div>'
+          + '</div>'
+          + '</div>'
+          + '</div>';
+
+          $("#post-container").append(html);
+
+          let addTagString = post.postAdditionalTags;
+          let addTagArray = addTagString.split(',');
+          
+          for(let j = 0; j < addTagArray.length; j++) {
+            let addTag = addTagArray[j];
+            let checkboxID = '#' + addTag + 'tag-' + GUID;
+
+            $(checkboxID).prop('checked', true);
+          }
+
+          $('#formPostTag-' + GUID).val(post.postTag);
+
+          var quill = new Quill('#editor-' + GUID, {
+            theme: 'snow',
+            modules: {
+              imageResize: {
+                displaySize: true
+              },
+              toolbar: [
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'color': [] }, { 'background': [] }], 
+                [{ 'align': [] }],
+                ['link', 'image'],
+                ['clean']  
+              ]
+            }
+          });
+      }
+  }
+
+  function uuidv4() {
+      return '00-0-4-1-000'.replace(/[^-]/g,
+        s => ((Math.random() + ~~s) * 0x10000 >> s).toString(16).padStart(4, '0')
+      );
+  }
+
+  function addPost() {
+
+      let GUID = uuidv4();
+
+      let html = '<div class="accordion accordion-flush mb-2 mt-2" id="accordion-' + GUID + '">'
+      + '<div class="accordion-item">'
+      + '<h2 class="accordion-header" id="heading-' + GUID + '">'
+      + '<button class="accordion-button" id="accordion-button-' + GUID + '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-' + GUID + '" aria-expanded="true" aria-controls="collapse-' + GUID + '">'
+      + 'New Post '
+      + '</button>'
+      + '</h2>'
+      + '<div id="collapse-' + GUID + '" class="accordion-collapse collapse show" aria-labelledby="heading-' + GUID + '" data-bs-parent="#accordion-' + GUID + '">'
+      + '<div class="accordion-body">'
+      + '<div class="row">'
+      + '<div class="col-6">' 
+
+      + '<div class="mb-3">'
+      + '<label for="formPostTitle" class="form-label">Post Title</label>'
+      + '<input type="text" class="form-control post-title" id="formPostTitle-' + GUID + '" placeholder="Post Title" value="">'
+      + '</div>'
+
+      + '<div class="mb-3">'
+      + '<label for="formPostDescription" class="form-label">Post Description</label>'
+      + '<input type="text" class="form-control" id="formPostDescription-' + GUID + '" placeholder="Post Description" value="">'
+      + '</div>'
+      + '</div>'
+
+      + '<div class="col-6">'
+      + '<div class="mb-3">'
+      + '<label for="formPostAuthor" class="form-label">Post Author (First Last)</label>'
+      + '<input type="text" class="form-control" id="formPostAuthor-' + GUID + '" placeholder="Post Author" value="">'
+      + '</div>'
+
+      + '<div class="mb-3">'
+      + '<label for="formPostTag" class="form-label">Post Tag</label>'
+      + '<select class="form-select" id="formPostTag-' + GUID + '">'
+      + '<option value="thewire" selected>The Wire</option>'
+      + '<option value="thetorch">The Torch</option>'
+      + '</select>'
+      + '</div>'
+
+      + '</div>'
+      + '</div>'
+
+
+      + '<div class="row mb-3">'
+      + '<div class="col">'
+      + '<label class="form-label">Additional Tags</label>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="international" id="internationaltag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="internationaltag">International</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="national" id="nationaltag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="nationaltag">National</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="cyber" id="cybertag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="cybertag">Cyber</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="ohio" id="ohiotag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="ohiotag">Ohio</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="space" id="spacetag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="spacetag">Space</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="terrorism" id="terrorismtag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="terrorismtag">Terrorism</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="whitehouse" id="whitehousetag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="whitehousetag">White House</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="pentagon" id="pentagontag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="pentagontag">Pentagon</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="military" id="militarytag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="militarytag">Military</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="intelligence" id="intelligencetag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="intelligencetag">Intelligence</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="congress" id="congresstag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="congresstag">Congress</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="courts" id="courtstag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="courtstag">Courts</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="civilunrest" id="civilunresttag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="civilunrest">Civil Unrest</label>'
+      + '</div>'
+
+      + '<div class="form-check">'
+      + '<input class="form-check-input checkbox-' + GUID + '" type="checkbox" value="politics" id="politicstag-' + GUID + '" unchecked/>'
+      + '<label class="form-check-label" for="politicstag">Politics</label>'
+      + '</div>'
+
+      + '</div>'
+      + '</div>'
+
+
+      + '<label class="form-label">Post Content</label>'
+      + '<div class="mb-3" id="editor-' + GUID + '">'
+      + '</div>'
+
+      + '<a id="save-' + GUID + '" class="save-post btn btn-black btn-outline-secondary me-2" href="#">Save Post</a>'
+      + '<a id="delete-' + GUID + '" class="delete-post btn btn-black btn-outline-secondary me-2" href="#">Delete Post</a>'
+      
+      + '</div>'
+      + '</div>'
+      + '</div>'
+      + '</div>';
+
+      $("#post-container").prepend(html);
+
+      var quill = new Quill('#editor-' + GUID, {
+        theme: 'snow',
+        modules: {
+          imageResize: {
+            displaySize: true
+          },
+          toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }], 
+            [{ 'align': [] }],
+            ['link', 'image'],
+            ['clean']  
+          ]
+        }
+      });
+  }
+
+  $("#add-post").click(function() {
+    addPost();
+  });
+
+  $(document).on('change keyup paste', '.post-title', function(event) {
+    let parent = $(this).closest('.accordion');
+    let parentID = parent.attr('id');
+
+    let finalID = parentID.replace('accordion-', '#accordion-button-');
+
+    $(finalID).text(this.value);
+  });
+
+  $(document).on('click', '.save-post', function(event) {
+    event.preventDefault();
+    let postGUID = $(this).attr('id').replace('save-', '');
+
+    let formPostTitle = $('#formPostTitle-' + postGUID).val();
+    let formPostAuthor = $('#formPostAuthor-' + postGUID).val();
+    let formPostDescription = $('#formPostDescription-' + postGUID).val();
+    let formPostTag = $('#formPostTag-' + postGUID).val();
+    let formPostTagName = $('#formPostTag-' + postGUID + ' option:selected').text();
+
+    let formPostAdditionalTags = [];
+    let formPostContent = $('#editor-' + postGUID + ' .ql-editor')[0].innerHTML;
+
+    let formPostText = $('#editor-' + postGUID)[0].textContent;
+
+    $('.checkbox-' + postGUID + ':checked').each(function() {
+        formPostAdditionalTags.push($(this).val());
+    });
+
+    let postObject = {
+      postID: postGUID,
+      postTag: formPostTag,
+      postTagName: formPostTagName,
+      postAdditionalTags: formPostAdditionalTags,
+      postTitle: formPostTitle,
+      postDescription: formPostDescription,
+      postContent: formPostContent,
+      postText: formPostText,
+      postDate: moment().toDate(),
+      postAuthor : formPostAuthor
+    }
+
+    let uri = window.location.origin + '/createPost';
+
+    $.ajax({
+      url: uri,
+      data: JSON.stringify(postObject),
+      contentType: 'application/json',
+      type: 'POST'
+    }).done(function(data) {
+      if(data.status == 'success') {
+          let message = '<div class="alert alert-dark mt-3 mb-3" role="alert">Post updated successfully.</div>'
+          $(".blog-header").prepend(message);
+
+          setTimeout(function () {
+            $(".alert").remove();
+          }, 5000);
+        } else {
+          let message = '<div class="alert alert-dark mt-3 mb-3" role="alert">Failed to update post.</div>'
+          $(".blog-header").prepend(message);
+
+          setTimeout(function () {
+            $(".alert").remove();
+          }, 5000);
+        }
+    });
+  });
+
+  $(document).on('click', '.delete-post', function(event) {
+      event.preventDefault();
+
+      let postGUID = $(this).attr('id').replace('delete-', '');
+
+      let uri = window.location.origin + '/deletePost?id=' + postGUID;
+
+      $.post(uri, function(data) {
+        $('#accordion-' + postGUID).remove();
+
+        if(data.status == 'success') {
+          let message = '<div class="alert alert-dark mt-3 mb-3" role="alert">Post deleted successfully.</div>'
+          $(".blog-header").prepend(message);
+
+          setTimeout(function () {
+            $(".alert").remove();
+          }, 5000);
+        } else {
+          let message = '<div class="alert alert-dark mt-3 mb-3" role="alert">Failed to delete post.</div>'
+          $(".blog-header").prepend(message);
+
+          setTimeout(function () {
+            $(".alert").remove();
+          }, 5000);
+        }
+      });
+  });
+
+</script>
+
+    
+  </body>
+</html>
